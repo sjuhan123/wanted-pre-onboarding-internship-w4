@@ -1,12 +1,13 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
-import App from "../App";
+import { render, screen } from "@testing-library/react";
+import { Main } from "../pages/Main";
 
-test("demo", () => {
-  expect(true).toBe(true);
-});
+describe("메인 페이지", () => {
+  it("헤더를 보여준다.", async () => {
+    render(<Main />);
 
-test("Renders the main page", () => {
-  render(<App />);
-  expect(true).toBeTruthy();
+    const $header = await screen.findByText("시계열 차트");
+
+    expect($header).toBeInTheDocument();
+  });
 });

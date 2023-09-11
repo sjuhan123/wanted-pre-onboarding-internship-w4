@@ -1,5 +1,17 @@
+import { ThemeProvider } from "styled-components";
+import { Main } from "./pages/Main";
+import GlobalStyle from "./styles/GlobalStyle";
+import { theme } from "./styles/theme";
+
 const App = () => {
-  return <h1>시계열 차트</h1>;
+  return (
+    <>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <Main />
+      </ThemeProvider>
+    </>
+  );
 };
 
 export default App;
