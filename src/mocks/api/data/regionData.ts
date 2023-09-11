@@ -1,4 +1,4 @@
-export const chartData = {
+export const regionData = {
   type: "Mock data",
   version: 1.0,
   response: {

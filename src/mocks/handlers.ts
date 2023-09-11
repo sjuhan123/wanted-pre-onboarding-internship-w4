@@ -3,8 +3,8 @@
  * handler를 따로 분리하는 이유는 연관된 API끼리 묶어주기 위함이다.
  */
 
-import chartHandler from "./api/chart";
+import regionHandler from "./api/region";
 
-const handlers = [...chartHandler];
+const handlers = [...regionHandler];
 
 export default handlers;
