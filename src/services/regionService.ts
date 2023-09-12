@@ -1,7 +1,7 @@
 import { API_PATH } from "../constants/api";
 import { HttpClientImpl } from "../httpClient/httpClient";
 
-export class regionServiceImpl {
+export class RegionServiceImpl {
   #httpClient;
 
   constructor(httpClient: HttpClientImpl) {
