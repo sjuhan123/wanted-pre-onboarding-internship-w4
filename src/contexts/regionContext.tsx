@@ -1,11 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 import { RegionServiceImpl } from "../services/regionService";
-import { TRegionDataList, TRegionIdList } from "../types/region";
+import { TRegionDataList } from "../types/region";
 import { convertToArray } from "../utils/convertToArray";
 
 interface IRegionContext {
   regionList: TRegionDataList | undefined;
-  regionIdList: TRegionIdList | undefined;
+  regionIdList: string[] | undefined;
 }
 
 interface RegionProviderProps {
@@ -13,16 +13,23 @@ interface RegionProviderProps {
   regionService: RegionServiceImpl;
 }
 
-export const RegionContext = createContext<IRegionContext | undefined>(
-  undefined
-);
+export const RegionContext = createContext<IRegionContext>({
+  regionList: [
+    {
+      id: "",
+      value_area: 0,
+      value_bar: 0,
+    },
+  ],
+  regionIdList: [""],
+});
 
 export const RegionProvider = ({
   children,
   regionService,
 }: RegionProviderProps) => {
   const [regionList, setRegionList] = useState<TRegionDataList>();
-  const [regionIdList, setRegionIdList] = useState<TRegionIdList>();
+  const [regionIdList, setRegionIdList] = useState<string[]>();
 
   useEffect(() => {
     const getRegionData = async () => {
