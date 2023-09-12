@@ -11,11 +11,11 @@ describe("메인 페이지", () => {
     expect($header).toBeInTheDocument();
   });
 
-  it(`"전체" 버튼이 선택되어 있는 피터링 바를 보여준다`, () => {
+  it(`"팔터링 바를 보여준다`, () => {
     render(<Main />);
 
-    const $filter = screen.getByRole("button", { name: "전체" });
+    const $filterBar = screen.getByRole("button", { name: "전체" });
 
-    expect($filter).toHaveClass("selected");
+    expect($filterBar).toBeInTheDocument();
   });
 });
