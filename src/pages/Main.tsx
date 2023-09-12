@@ -1,9 +1,16 @@
 import styled from "styled-components";
+import { useRegion } from "../hooks/useRegion";
+import { FilterChart } from "../components/FilterChart.tsx/FilterChart";
 
 export const Main = () => {
+  const { regionList, regionIdList } = useRegion();
+
   return (
     <Container>
       <h2>시계열 차트</h2>
+      {regionList && regionIdList && (
+        <FilterChart chartData={regionList} filterOptions={regionIdList} />
+      )}
     </Container>
   );
 };
