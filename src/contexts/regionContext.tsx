@@ -1,10 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 import { RegionServiceImpl } from "../services/regionService";
-import { TRegionDataList } from "../types/region";
+import { TRegionTimeDataList } from "../types/region";
 import { convertToArray } from "../utils/convertToArray";
 
 interface IRegionContext {
-  regionList: TRegionDataList | undefined;
+  regionTimeDataList: TRegionTimeDataList | undefined;
   regionIdList: string[] | undefined;
 }
 
@@ -14,11 +14,13 @@ interface RegionProviderProps {
 }
 
 export const RegionContext = createContext<IRegionContext>({
-  regionList: [
+  regionTimeDataList: [
     {
-      id: "",
-      value_area: 0,
-      value_bar: 0,
+      "": {
+        id: "",
+        value_area: 0,
+        value_bar: 0,
+      },
     },
   ],
   regionIdList: [""],
@@ -28,18 +30,20 @@ export const RegionProvider = ({
   children,
   regionService,
 }: RegionProviderProps) => {
-  const [regionList, setRegionList] = useState<TRegionDataList>();
+  const [regionTimeDataList, setRegionTimeDataList] =
+    useState<TRegionTimeDataList>();
   const [regionIdList, setRegionIdList] = useState<string[]>();
 
   useEffect(() => {
     const getRegionData = async () => {
-      const data = await regionService.get();
-      const regionList = convertToArray(data.response);
-
-      const regionIdsSet = new Set(regionList.map((item) => item.id));
+      const regionData = await regionService.get();
+      const regionDataArray = convertToArray(regionData.response);
+      const regionIdsSet = new Set(
+        regionDataArray.map(([, regionInfo]) => regionInfo.id)
+      );
       const regionIdList = Array.from(regionIdsSet);
 
-      setRegionList(regionList);
+      setRegionTimeDataList(regionDataArray);
       setRegionIdList(regionIdList);
     };
 
@@ -47,7 +51,7 @@ export const RegionProvider = ({
   }, [regionService, setRegionIdList]);
 
   return (
-    <RegionContext.Provider value={{ regionList, regionIdList }}>
+    <RegionContext.Provider value={{ regionTimeDataList, regionIdList }}>
       {children}
     </RegionContext.Provider>
   );

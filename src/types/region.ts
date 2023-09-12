@@ -4,11 +4,19 @@ interface IRegionData {
   value_bar: number;
 }
 
+type IRegionTimeData = Record<string, IRegionData>;
+
 interface IRegionDataResponse {
   type: string;
   version: number;
-  response: Record<string, IRegionData>;
+  response: IRegionTimeData;
 }
 type TRegionDataList = IRegionData[];
+type TRegionTimeDataList = IRegionTimeData[];
 
-export type { IRegionDataResponse, TRegionDataList, IRegionData };
+export type {
+  IRegionDataResponse,
+  TRegionTimeDataList,
+  TRegionDataList,
+  IRegionData,
+};

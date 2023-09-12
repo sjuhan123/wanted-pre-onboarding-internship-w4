@@ -9,7 +9,7 @@ export const useRegion = () => {
   }
 
   return {
-    regionList: regionData.regionList,
+    regionTimeDataList: regionData.regionTimeDataList,
     regionIdList: regionData.regionIdList,
   };
 };

@@ -3,13 +3,16 @@ import { useRegion } from "../hooks/useRegion";
 import { FilterChart } from "../components/FilterChart.tsx/FilterChart";
 
 export const Main = () => {
-  const { regionList, regionIdList } = useRegion();
+  const { regionTimeDataList, regionIdList } = useRegion();
 
   return (
     <Container>
       <h2>시계열 차트</h2>
-      {regionList && regionIdList && (
-        <FilterChart chartData={regionList} filterOptions={regionIdList} />
+      {regionTimeDataList && regionIdList && (
+        <FilterChart
+          chartData={regionTimeDataList}
+          filterOptions={regionIdList}
+        />
       )}
     </Container>
   );
