@@ -7,7 +7,7 @@ import { FILTER_NAME } from "../constants/filterButtons";
 const TEST_FILTER_BUTTONS = ["서울", "대전", "대구", "울산"];
 const DEFAULT_FILTER_INDEX = 0;
 
-describe("필터차트", () => {
+describe("필터바", () => {
   const filterOptions = TEST_FILTER_BUTTONS;
 
   beforeEach(() => {
