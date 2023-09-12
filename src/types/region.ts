@@ -1,13 +1,24 @@
-interface IRegionData {
+interface IRegionId {
   id: string;
+}
+
+interface IRegionData extends IRegionId {
   value_area: number;
   value_bar: number;
 }
 
-export type TRegionDataList = Record<string, IRegionData>;
-
-export interface IRegionDataResponse {
+interface IRegionDataResponse {
   type: string;
   version: number;
-  response: TRegionDataList;
+  response: Record<string, IRegionData>;
 }
+
+type TRegionIdList = IRegionId[];
+type TRegionDataList = IRegionData[];
+
+export type {
+  IRegionDataResponse,
+  TRegionDataList,
+  IRegionData,
+  TRegionIdList,
+};
