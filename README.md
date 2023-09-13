@@ -25,16 +25,16 @@
 
 ### 환경 구성
 
-**왜 CRA가 아닌 Vite?**
+**📍 왜 CRA가 아닌 Vite?**
 
 차트가 렌더링 되는데 있어서 빌드 속도가 중요하다고 생각했다. CRA는 Webpack을 사용하기 때문에 빌드 속도가 느리다. Vite는 기본적으로 ESBuild를 사용하여 빌드를 하기 때문에, 빌드 속도가 빠르다.
 
-**왜 D3.js?**
+**📍 왜 D3.js?**
 
 React 프로젝트에서 차트를 만들 때 많이 사용되는 Recharts와 chart.js 등 수많은 유명 라이브러리들이 있지만, 이 중 상당수 라이브러리의 기반이 되는 D3.js를 활용해보면서 차트 라이브러리의 기본적인 구조를 이해해보고 싶었다.
 짧은 과제 기간(3 ~ 4일) 동안 런닝 커브가 있는 D3.js를 선택하는 것은 위험부담이 있지만, D3.js를 활용해보고 싶었고, 또한 D3.js를 활용하면서 React와의 연동을 어떻게 할 수 있을지 궁금했다.
 
-**왜 MSW?**
+**📍 왜 MSW?**
 
 실제 백엔드 API가 구현되기 전에 프론트엔드 개발을 진행해야 하는 상황을 가정하며, 목 데이터를 사용하여 "뷰 컴포넌트 설계 및 구현 -> 테스트 -> 리팩토링/Bug Fix" 주기를 경험해보고자 했다.
 
@@ -101,7 +101,7 @@ React 프로젝트에서 차트를 만들 때 많이 사용되는 Recharts와 ch
 
 ## 학습 & 참고자료
 
-1. d3.js 자료
+**📍 d3.js 자료**
 
 - Elements are duplicated instead of moved in D3 with React  
   https://stackoverflow.com/questions/71527112/elements-are-duplicated-instead-of-moved-in-d3-with-react
@@ -116,7 +116,7 @@ React 프로젝트에서 차트를 만들 때 많이 사용되는 Recharts와 ch
 - The top 8 React chart libraries  
   https://blog.logrocket.com/top-8-react-chart-libraries/
 
-2. test 자료 / jest 오류 / msw
+**📍 test 자료 / jest 오류 / msw**
 
 - MSW를 활용하는 Front-End 통합테스트  
   https://fe-developers.kakaoent.com/2022/220825-msw-integration-testing/?ref=codenary
@@ -129,7 +129,7 @@ React 프로젝트에서 차트를 만들 때 많이 사용되는 Recharts와 ch
 - setup Jest with vite  
   https://hung.dev/posts/jest-vite
 
-3. Json server 배포
+**📍 Json server 배포**
 
 - Create RESTful API with JSON Server and deploy it to Vercel  
   https://ivo-culic.medium.com/create-restful-api-with-json-server-and-deploy-it-to-vercel-d56061c1157a
