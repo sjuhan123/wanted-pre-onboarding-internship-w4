@@ -8,6 +8,7 @@ export default {
   moduleNameMapper: {
     "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/src/test/__mocks__/fileMock.js",
     "\\.(css|less|scss)$": "identity-obj-proxy",
+    d3: "<rootDir>/node_modules/d3/dist/d3.min.js",
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 };
