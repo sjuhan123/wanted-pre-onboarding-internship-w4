@@ -1,24 +1,31 @@
 import styled from "styled-components";
 import { useFilter } from "../../hooks/useFilter";
 import FilterBar from "../common/FilterBar";
+import TimeSeriesChart from "../common/TimeSeriesChart";
+import { TRegionTimeDataList } from "../../types/region";
+import { FILTER_NAME } from "../../constants/filterButtons";
 
-interface FilterChartProps<D, O> {
-  chartData: D;
-  filterOptions: O;
+interface FilterChartProps {
+  chartData: TRegionTimeDataList;
+  filterOptions: string[];
 }
 
-export const FilterChart = <D, O extends string[] | number[]>({
-  // chartData,
-  filterOptions,
-}: FilterChartProps<D, O>) => {
+export const FilterChart = ({ chartData, filterOptions }: FilterChartProps) => {
+  const options = [FILTER_NAME.All, ...filterOptions];
   const { currentOption, handleFilter } = useFilter();
 
   return (
     <Container>
       <FilterBar
-        options={filterOptions}
+        options={options}
         currentOption={currentOption}
         handleFilter={handleFilter}
+      />
+      <TimeSeriesChart
+        chartData={chartData}
+        ids={options}
+        targetId={currentOption}
+        targetIdHandler={handleFilter}
       />
     </Container>
   );

@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { FILTER_NAME } from "../../constants/filterButtons";
 
 interface FilterBarProps {
-  options: string[] | number[];
+  options: string[];
   currentOption: number;
   handleFilter: (option: number) => void;
 }
@@ -12,11 +11,9 @@ const FilterBar = ({
   currentOption,
   handleFilter,
 }: FilterBarProps) => {
-  const filterOptions = [FILTER_NAME.All, ...options];
-
   return (
     <Container>
-      {filterOptions.map((option, index) => {
+      {options.map((option, index) => {
         return (
           <Button
             key={option}
