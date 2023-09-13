@@ -3,6 +3,7 @@ import styled from "styled-components";
 import * as d3 from "d3";
 import { IRegionData, TRegionTimeDataList } from "../../types/region";
 import { FILTER_NAME } from "../../constants/filterButtons";
+import { TIME_SERIES_CHART } from "../../constants/timeSeriesChart";
 
 // TODO: Props 타입 수정 필요
 interface TimeSeriesChartProps {
@@ -27,12 +28,12 @@ const TimeSeriesChart = ({
   const data = chartData.map((d) => d[1]);
 
   useEffect(() => {
-    const width = 1000;
-    const height = 500;
-    const marginTop = 30;
-    const marginRight = 100;
-    const marginBottom = 30;
-    const marginLeft = 100;
+    const width = TIME_SERIES_CHART.WIDTH;
+    const height = TIME_SERIES_CHART.HEIGHT;
+    const marginTop = TIME_SERIES_CHART.MARGIN_TOP;
+    const marginRight = TIME_SERIES_CHART.MARGIN_RIGHT;
+    const marginBottom = TIME_SERIES_CHART.MARGIN_BOTTOM;
+    const marginLeft = TIME_SERIES_CHART.MARGIN_LEFT;
 
     const filteredTimes = times.filter((_time, index) => index % 8 === 0);
 
