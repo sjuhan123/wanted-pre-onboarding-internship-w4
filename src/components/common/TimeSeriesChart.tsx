@@ -28,7 +28,7 @@ const TimeSeriesChart = ({
 
   useEffect(() => {
     const width = 1000;
-    const height = 700;
+    const height = 500;
     const marginTop = 30;
     const marginRight = 100;
     const marginBottom = 30;

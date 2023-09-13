@@ -19,12 +19,10 @@ export const Main = () => {
 };
 
 const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  h2 {
-    margin: 3rem auto;
-    font-size: 2rem;
-  }
 `;
