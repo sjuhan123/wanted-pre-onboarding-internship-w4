@@ -32,7 +32,7 @@ export default FilterBar;
 
 const Container = styled.div`
   display: flex;
-  padding: 1rem;
+  justify-content: center;
 `;
 
 const Button = styled.button<{ selected: boolean }>`

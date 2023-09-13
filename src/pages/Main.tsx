@@ -24,7 +24,7 @@ const Container = styled.div`
   align-items: center;
 
   h2 {
-    margin: 5rem auto;
+    margin: 3rem auto;
     font-size: 2rem;
   }
 `;

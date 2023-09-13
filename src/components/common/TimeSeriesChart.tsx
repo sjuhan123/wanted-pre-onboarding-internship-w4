@@ -4,6 +4,7 @@ import * as d3 from "d3";
 import { IRegionData, TRegionTimeDataList } from "../../types/region";
 import { FILTER_NAME } from "../../constants/filterButtons";
 
+// TODO: Props 타입 수정 필요
 interface TimeSeriesChartProps {
   chartData: TRegionTimeDataList;
   ids?: number[] | string[];
@@ -17,13 +18,13 @@ const TimeSeriesChart = ({
   targetId = 0,
   targetIdHandler,
 }: TimeSeriesChartProps) => {
+  const svgRef = useRef(null);
+
   const times = chartData.map((d) => {
     const dateTimeParts = String(d[0]).split(" ");
     return dateTimeParts[1];
   });
   const data = chartData.map((d) => d[1]);
-
-  const svgRef = useRef(null);
 
   useEffect(() => {
     const width = 1000;
@@ -76,7 +77,6 @@ const TimeSeriesChart = ({
       .style("border-radius", "4px")
       .style("color", "#fff")
       .text("a simple tooltip");
-
     // svg
     const svg = d3
       .select(svgRef.current)
@@ -102,7 +102,9 @@ const TimeSeriesChart = ({
       )
       .on("mouseover", function (_e, d) {
         tooltip
-          .html(`<div>id: ${d.id}</div><div>bar: ${d.value_bar}</div>`)
+          .html(
+            `<div>id: ${d.id}</div><div>bar: ${d.value_bar}</div><div>area: ${d.value_area}</div>`
+          )
           .style("visibility", "visible");
         d3.select(this).transition().attr("fill", "rgb(0, 188, 212)");
       })
@@ -113,12 +115,12 @@ const TimeSeriesChart = ({
       })
       .on("mouseout", function (_e, d) {
         if (d.id === ids[targetId]) return;
-        tooltip.html(``).style("visibility", "hidden");
+        tooltip.style("visibility", "hidden");
         d3.select(this).transition().attr("fill", "rgb(87, 123, 241)");
       })
-      .on("click", function (_e, d) {
+      .on("click", function (e, d) {
         const targetId = ids.findIndex((id) => id === d.id);
-        tooltip.html(``).style("visibility", "hidden");
+        tooltip.style("visibility", "hidden");
         targetIdHandler(targetId);
       });
 
@@ -131,7 +133,8 @@ const TimeSeriesChart = ({
       .enter()
       .append("path")
       .attr("d", area(data))
-      .attr("fill", "orange");
+      .attr("fill", "fuchsia")
+      .attr("opacity", "0.01");
 
     // x축
     svg
@@ -177,6 +180,7 @@ const TimeSeriesChart = ({
           .text("Bar")
       );
 
+    // y 우측축
     svg
       .append("g")
       .attr("role", "yRightAxis")
@@ -198,7 +202,6 @@ const TimeSeriesChart = ({
 
     return () => {
       svg.selectAll("*").remove();
-      d3.select("body").selectAll(".d3-tooltip").remove();
     };
   }, [data, ids, targetId, targetIdHandler, times]);
 
