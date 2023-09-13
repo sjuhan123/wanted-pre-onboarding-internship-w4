@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom";
 import { screen } from "@testing-library/react";
 import FilterBar from "../components/common/FilterBar";
-import { renderWithTheme } from "./Main.test";
 import { FILTER_NAME } from "../constants/filterButtons";
+import { renderWithTheme } from "./TimeSeriesChart.test";
 
 const TEST_FILTER_BUTTONS = ["서울", "대전", "대구", "울산"];
 const DEFAULT_FILTER_INDEX = 0;

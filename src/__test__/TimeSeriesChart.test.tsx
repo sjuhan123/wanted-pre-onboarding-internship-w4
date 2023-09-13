@@ -1,14 +1,22 @@
 import "@testing-library/jest-dom";
-import { screen } from "@testing-library/react";
-import { renderWithTheme } from "./Main.test";
+import { render, screen } from "@testing-library/react";
 import { regionData } from "../mocks/api/data/regionData";
 import TimeSeriesChart from "../components/common/TimeSeriesChart";
+import { convertToArray } from "../utils/convertToArray";
+import { ThemeProvider } from "styled-components";
+import { theme } from "../styles/theme";
+
+export const renderWithTheme = (children: React.ReactElement) => {
+  return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
+};
 
 describe("시계열 차트", () => {
-  const mockData = Object.values(regionData.response);
+  const mockData = convertToArray(regionData.response);
 
   beforeEach(() => {
-    renderWithTheme(<TimeSeriesChart chartData={mockData} />);
+    renderWithTheme(
+      <TimeSeriesChart chartData={mockData} targetIdHandler={(id) => id} />
+    );
   });
 
   it("xAxis을 그린다.", () => {
@@ -16,18 +24,17 @@ describe("시계열 차트", () => {
     expect(xAxis).toBeInTheDocument();
   });
 
-  it("xAxis의 헤더는 Area다 ", () => {
-    const xAxis = screen.getByRole("xAxis");
-    expect(xAxis).toHaveTextContent("Area");
+  it(`yLeftAxis을 "Bar"헤더와 함께 그린다.`, () => {
+    const yLeftAxis = screen.getByRole("yLeftAxis");
+
+    expect(screen.getByText("Bar")).toBeInTheDocument();
+    expect(yLeftAxis).toBeInTheDocument();
   });
 
-  it("yAxis을 2개 그린다.", () => {
-    const yAxis = screen.getAllByRole("yAxis");
-    expect(yAxis).toHaveLength(2);
-  });
+  it(`yRightAxis를 "Area"헤더와 함께 그린다.`, () => {
+    const yRightAxis = screen.getByRole("yRightAxis");
 
-  it("yAxis의 헤더는 Bar다.", () => {
-    const yAxis = screen.getAllByRole("yAxis");
-    expect(yAxis[0]).toHaveTextContent("Bar");
+    expect(screen.getByText("Area")).toBeInTheDocument();
+    expect(yRightAxis).toBeInTheDocument();
   });
 });
