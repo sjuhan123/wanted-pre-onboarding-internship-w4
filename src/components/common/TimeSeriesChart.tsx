@@ -118,7 +118,7 @@ const TimeSeriesChart = ({
         tooltip.style("visibility", "hidden");
         d3.select(this).transition().attr("fill", "rgb(87, 123, 241)");
       })
-      .on("click", function (e, d) {
+      .on("click", function (_e, d) {
         const targetId = ids.findIndex((id) => id === d.id);
         tooltip.style("visibility", "hidden");
         targetIdHandler(targetId);
