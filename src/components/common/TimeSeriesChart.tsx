@@ -78,12 +78,16 @@ const TimeSeriesChart = ({
       .style("color", "#fff")
       .text("a simple tooltip");
     // svg
+    // svg 밖으로 마우스가 나가면 tooltip이 사라지도록 설정
     const svg = d3
       .select(svgRef.current)
       .attr("width", width)
       .attr("height", height)
       .attr("viewBox", [0, 0, width, height + 50])
-      .attr("style", "max-width: 100%; height: auto%;");
+      .attr("style", "max-width: 100%; height: auto%;")
+      .on("mouseout", function () {
+        tooltip.style("visibility", "hidden");
+      });
 
     // bar chart
     svg
